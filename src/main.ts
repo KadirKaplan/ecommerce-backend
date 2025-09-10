@@ -6,13 +6,13 @@ import { ResponseInterceptor } from './common/interceptors/response.interceptor'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalPipes(
+  app.useGlobalPipes( // global validation pipe
     new ValidationPipe({
       whitelist: true,
     })
   );
 
-  //app.useGlobalInterceptors(new ResponseInterceptor )  // custom response interceptor
+  app.useGlobalInterceptors(new ResponseInterceptor )  // custom response interceptor
   
   const configService = app.get(ConfigService);
   const port = configService.get<number>('PORT') || 3000;
