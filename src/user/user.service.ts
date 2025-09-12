@@ -75,6 +75,32 @@ export class UserService {
     Object.assign(user, updateUserDto);
     return await this.userRepository.save(user);
   }
+  
+  async setInactive(id: string): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if(!user) {
+      throw new NotFoundException('User not found');
+    }
+    else if(!user.isActive) {
+      throw new BadRequestException('User is already inactive');
+    } else {
+      user.isActive = false;
+      return await this.userRepository.save(user);
+    }
+  }
+  
+  async setActive(id:string): Promise<User> {
+    const user = await this.userRepository.findOne({ where: { id } });
+    if(!user) {
+      throw new NotFoundException('User not found');
+    }
+    else if(user.isActive) {
+      throw new BadRequestException('User is already active');
+    } else {
+      user.isActive = true;
+      return await this.userRepository.save(user);
+    }
+  }
 
   async remove(id: string) {
    const user = await this.userRepository.findOne({ where: { id } });

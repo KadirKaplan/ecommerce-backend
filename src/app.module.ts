@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoggerMiddleware } from './common/middlewares/logger.middleware';
 import { ProductModule } from './product/product.module';
 import { AuthModule } from './auth/auth.module';
+import { CategoryModule } from './category/category.module';
 
 
 @Module({
@@ -32,6 +33,7 @@ import { AuthModule } from './auth/auth.module';
     UserModule,
     ProductModule,
     AuthModule,
+    CategoryModule,
 
   ],
   controllers: [AppController],

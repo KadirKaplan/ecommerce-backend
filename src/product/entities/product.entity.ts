@@ -1,5 +1,5 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-
+import { Category } from "src/category/entities/category.entity";
 @Entity()
 export class Product {
     @PrimaryGeneratedColumn('uuid')
@@ -20,9 +20,9 @@ export class Product {
     @Column()
     quentity: number;
 
-    // @ManyToOne(() => Category, category => category.products)
-    // category: Category;
-   
+    @ManyToOne(() => Category, category => category.product)
+    category: Category;
+    
 
 
 }

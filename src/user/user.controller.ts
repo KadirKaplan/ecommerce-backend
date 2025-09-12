@@ -24,27 +24,43 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   @Get('profile')
   async getProfile(@Request() req) {
-    console.log(req.user);
     return req.user;
   }
+
+  @UseGuards(JwtAuthGuard)
   @Get('users')
   async findAll() {
     return await this.userService.findAll();
   }
 
+  @UseGuards(JwtAuthGuard)
   @Get(':id')
   async findOneById(@Param('id') id: string) {
     return await this.userService.findOneById(id);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return await this.userService.update(id, updateUserDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   async remove(@Param('id') id: string) {
     return await this.userService.remove(id);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Patch('set-inactive/:id')
+  async setInactive(@Param('id') id: string) {
+    return await this.userService.setInactive(id);
+  }
+  
+  @UseGuards(JwtAuthGuard)
+  @Patch('set-active/:id')
+  async setActive(@Param('id') id: string) {
+    return await this.userService.setActive(id);
   }
 
 }
