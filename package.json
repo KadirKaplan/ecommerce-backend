@@ -1,7 +1,7 @@
 {
-  "name": "int.cms-data-provider",
+  "name": "ecommerce-backend",
   "version": "0.0.1",
-  "description": "Data provider microservice for CMS",
+  "description": "",
   "author": "",
   "private": true,
   "license": "UNLICENSED",
